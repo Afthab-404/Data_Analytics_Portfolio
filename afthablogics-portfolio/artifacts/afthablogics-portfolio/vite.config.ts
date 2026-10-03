@@ -5,26 +5,13 @@ import { defineConfig } from 'vite';
 
 import runtimeErrorOverlay from '@replit/vite-plugin-runtime-error-modal';
 
-const PORT = process.env.PORT || 5173;
 
-const port = Number(rawPort);
-export default defineConfig({
-  server: {
-    port: Number(PORT),
-  },
-});
+const basePath = "/";
+const port = 5173;
 
-if (Number.isNaN(port) || port <= 0) {
-  throw new Error(`Invalid PORT value: "${rawPort}"`);
-}
+const basePath = process.env.BASE_PATH || "/";
 
-const basePath = process.env.BASE_PATH;
-
-if (!basePath) {
-  throw new Error(
-    'BASE_PATH environment variable is required but was not provided.',
-  );
-}
+const port = Number(process.env.PORT || 5173);
 
 export default defineConfig({
   base: basePath,
